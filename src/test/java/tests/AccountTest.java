@@ -9,11 +9,11 @@ import static org.testng.Assert.assertTrue;
 
 public class AccountTest extends BaseTest {
 
-    @Test
+    @Test(description = "Create account test")
     public void createAccount() {
         boolean isOpened = loginPage
                 .open()
-                .login("maximus200064-xbln@force.com", "testPass1112")
+                .login("maximus200064-xbln@force.com", "testPass111")
                 .isOpened();
         assertTrue(isOpened, "Home page wasn't opened");
 
