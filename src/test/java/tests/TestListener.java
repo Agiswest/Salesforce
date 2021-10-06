@@ -37,22 +37,6 @@ public class TestListener implements ITestListener {
         System.out.println(String.format("======================================== SKIPPING TEST %s ========================================", iTestResult.getName()));
     }
 
-    @Attachment(value = "Last screen state", type = "image/png")
-    private byte[] takeScreenshot(ITestResult iTestResult) {
-        ITestContext context = iTestResult.getTestContext();
-        try {
-            WebDriver driver = (WebDriver) context.getAttribute("driver");
-            if(driver != null) {
-                return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-            } else {
-                return new byte[] {};
-            }
-        } catch (NoSuchSessionException | IllegalStateException ex) {
-            return new byte[] {};
-        }
-    }
-
-
     private long getExecutionTime(ITestResult iTestResult) {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
     }
