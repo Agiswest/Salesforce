@@ -13,7 +13,7 @@ public class AccountTest extends BaseTest {
     public void createAccount() {
         boolean isOpened = loginPage
                 .open()
-                .login("maximus200064-xbln@force.com", "testPass1112")
+                .login(USER, PASSWORD)
                 .isOpened();
         assertTrue(isOpened, "Home page wasn't opened");
 
