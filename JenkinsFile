@@ -5,6 +5,9 @@ pipeline {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
     }
+    parameters {
+        booleanParam(name: 'HEADLESS', defaultValue: true, description: 'Headless browser')
+    }
 
     stages {
         stage('Build') {
@@ -16,7 +19,7 @@ pipeline {
                 // sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                bat "mvn clean test"
+                bat "mvn clean test -Dheadless=${param_HEADLESS}"
             }
 
             post {
