@@ -7,8 +7,8 @@ public class DropDown {
 
     WebDriver driver;
     String label;
-
-    String dropdown = "//span[contains(text(), '%s')]/ancestor::div[contains(@class, 'uiInputSelect')]//a";
+    String dropdown = "//span[contains(text(), '%s')]//ancestor::*[contains(@class, 'uiInputSelect')]//descendant::*"
+            + "[contains(@class, 'select')]";
 
     public DropDown(WebDriver driver, String label) {
         this.driver = driver;
@@ -17,6 +17,6 @@ public class DropDown {
 
     public void select(String option) {
         driver.findElement(By.xpath(String.format(dropdown, label))).click();
-        driver.findElement(By.xpath(String.format("//a[@title='%s']", option))).click();
+        driver.findElement(By.cssSelector(String.format("[title='%s']", option))).click();
     }
 }
