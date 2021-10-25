@@ -30,11 +30,7 @@ pipeline {
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
                 }
-            }
-        }
-        stage('generating allure report') {
-        steps {
-            script {
+                script {
                     allure([
                             includeProperties: false,
                             jdk: '',
@@ -42,8 +38,13 @@ pipeline {
                             reportBuildPolicy: 'ALWAYS',
                             results: [[path: 'target/allure-results']]
                     ])
+                }
             }
         }
+        /* stage('generating allure report') {
+        steps {
+
+        }
+        } */
     }
-}
 }
